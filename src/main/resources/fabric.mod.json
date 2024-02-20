@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "jumblejunk",
+	"version": "${version}",
+	"name": "jumblejunk",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/jumblejunk/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.gabriel2329.jumblejunk.JumbleJunk"
+		],
+		"client": [
+			"com.gabriel2329.jumblejunk.JumbleJunkClient"
+		],
+		"fabric-datagen": [
+			"com.gabriel2329.jumblejunk.JumbleJunkDataGenerator"
+		]
+	},
+	"mixins": [
+		"jumblejunk.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.7",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
