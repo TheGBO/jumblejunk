@@ -33,7 +33,7 @@ public class SignalMeterItem extends Item {
             .withColor(getColourForSignalStrength(redstonePower))));
         }
         context.getStack().damage(1, player, playerEntity -> playerEntity.sendToolBreakStatus(player.getActiveHand()));
-        return super.useOnBlock(context);
+        return ActionResult.success(world.isClient());
     }
 
     private TextColor getColourForSignalStrength(int value){

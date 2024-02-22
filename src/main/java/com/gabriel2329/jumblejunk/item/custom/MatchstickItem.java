@@ -6,6 +6,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.CandleBlock;
 import net.minecraft.block.CandleCakeBlock;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,13 +17,14 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
-public class MatchStickItem extends Item {
+public class MatchstickItem extends Item {
 
-    public MatchStickItem(Settings settings) {
+    public MatchstickItem(Settings settings) {
         super(settings);
     }
 
@@ -47,11 +50,9 @@ public class MatchStickItem extends Item {
                 ItemStack itemStack = context.getStack();
                 if (playerEntity instanceof ServerPlayerEntity) {
                     Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity)playerEntity, blockPos2, itemStack);
-                    itemStack.damage(1, playerEntity, (p) -> {
-                        p.sendToolBreakStatus(context.getHand());
-                    });
                 }
 
+                itemStack.decrement(1);
                 return ActionResult.success(world.isClient());
             }
             else {
@@ -71,5 +72,16 @@ public class MatchStickItem extends Item {
             return ActionResult.success(world.isClient());
         }
     }
-    
+
+    @Override
+    public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+        World world = user.getWorld();
+        world.playSound(user, user.getBlockPos(), SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.PLAYERS, 1.0f, world.getRandom().nextFloat() * 2);
+        stack.decrement(1);
+        entity.setOnFireFor(3);
+        if(entity instanceof MobEntity){
+            entity.setAttacker(user);
+        }
+        return ActionResult.success(world.isClient);
+    }
 }
