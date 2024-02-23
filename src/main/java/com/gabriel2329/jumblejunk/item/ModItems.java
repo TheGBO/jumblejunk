@@ -21,7 +21,11 @@ public class ModItems {
     public static final Item MATCHSTICK = registerItem("matchstick", 
     new MatchstickItem(new FabricItemSettings().maxCount(64)));
 
-    public static final Item FRIED_EGG = registerItem("fried_egg", new Item(new FabricItemSettings().food(ModFoodComponents.FRIED_EGG)));
+    public static final Item LIFE_STAR = registerItem("life_star", 
+    new Item(new FabricItemSettings().food(ModFoodComponents.LIFE_STAR)));
+
+    public static final Item FRIED_EGG = registerItem("fried_egg", 
+    new Item(new FabricItemSettings().food(ModFoodComponents.FRIED_EGG)));
 
     private static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(JumbleJunk.MOD_ID, name), item);
@@ -34,6 +38,7 @@ public class ModItems {
 
     public static void addItemsToFoodTab(FabricItemGroupEntries entries){
         entries.add(FRIED_EGG);
+        entries.add(LIFE_STAR);
     }
 
     public static void addItemsToToolsTab(FabricItemGroupEntries entries){
