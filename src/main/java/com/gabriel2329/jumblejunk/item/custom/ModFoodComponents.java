@@ -13,9 +13,9 @@ public class ModFoodComponents {
 
     public static final FoodComponent LIFE_STAR = new FoodComponent
     .Builder()
-    .hunger(3)
-    .saturationModifier(0.25f)
-    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 10, 16), 1f)
+    .hunger(-1)
+    .saturationModifier(0.125f)
+    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 8, 32), 1f)
     .alwaysEdible()
     .build();
 }

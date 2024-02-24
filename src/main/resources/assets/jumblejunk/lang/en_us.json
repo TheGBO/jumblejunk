@@ -3,6 +3,5 @@
     "item.jumblejunk.fried_egg": "Fried egg",
     "item.jumblejunk.matchstick": "Matchstick",
     "item.jumblejunk.life_star": "Life Star",
-    "message.jumblejunk.weak_power": "Weak Power",
-    "message.jumblejunk.strong_power": "Strong Power"
+    "text.jumblejunk.meter_power": "Redstone power: "
 }

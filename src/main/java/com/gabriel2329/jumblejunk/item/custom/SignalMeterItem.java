@@ -3,6 +3,7 @@ package com.gabriel2329.jumblejunk.item.custom;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
@@ -12,9 +13,9 @@ import net.minecraft.world.World;
 
 public class SignalMeterItem extends Item {
 
-    private static final TextColor weakColour = TextColor.parse("#cccccc");
-    private static final TextColor mediumColour = TextColor.parse("#fefe00");
-    private static final TextColor strongColour = TextColor.parse("#00ff00");
+    private static final TextColor weakColour = TextColor.parse("#ffff00");
+    private static final TextColor mediumColour = TextColor.parse("#00ff00");
+    private static final TextColor strongColour = TextColor.parse("#ff0000");
 
     public SignalMeterItem(Settings settings) {
         super(settings);
@@ -27,10 +28,10 @@ public class SignalMeterItem extends Item {
         BlockPos pos = context.getBlockPos();
         if(!world.isClient()){
             int redstonePower = world.getReceivedRedstonePower(pos);
-
-            player.sendMessage(Text.literal("Redstone Power:"+redstonePower)
-            .setStyle(Style.EMPTY
-            .withColor(getColourForSignalStrength(redstonePower))));
+            Text powerText = Text.of(String.valueOf(redstonePower));
+            MutableText concatenatedText = Text.translatable("text.jumblejunk.meter_power").append(powerText);
+            Text textResult = concatenatedText.setStyle(Style.EMPTY.withColor(getColourForSignalStrength(redstonePower)));
+            player.sendMessage(textResult);
         }
         context.getStack().damage(1, player, playerEntity -> playerEntity.sendToolBreakStatus(player.getActiveHand()));
         return ActionResult.success(world.isClient());
