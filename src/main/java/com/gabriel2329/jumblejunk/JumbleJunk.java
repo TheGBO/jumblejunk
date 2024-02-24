@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.gabriel2329.jumblejunk.command.ModCommands;
 import com.gabriel2329.jumblejunk.item.ModItems;
 
 public class JumbleJunk implements ModInitializer {
@@ -14,5 +15,6 @@ public class JumbleJunk implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.registerModItems();
+		ModCommands.registerCommands();
 	}
 }
